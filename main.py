@@ -111,7 +111,7 @@ class main():
             for player in self.players:
                 os.system("clear")
                 self.player_turn(player)
-                input()
+                input("Continue..\n")
 
             for player in self.players:
                 os.system("clear")
