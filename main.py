@@ -100,7 +100,7 @@ class main():
                 os.system("clear")
 
                 bet = input(f"How much would you like to bet {player.username}?\nYou have {player.cash}\n")
-                while not bet not bet.isdigit() or 0 > int(bet) > player.cash :
+                while not bet or not bet.isdigit() or 0 > int(bet) > player.cash :
                     if not bet or not bet.isdigit: bet = input(f"Please input valid amount.\nYou have {player.cash}\n")
                     if player.cash > int(bet) < 0: bet = input(f"Max bet of {player.cash} allowed.\nHow much would you like to bet?\n")
                 else:

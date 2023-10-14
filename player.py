@@ -30,9 +30,7 @@ class player:
             self.check_blackjack(hand)
             for card in hand:
                 num = card
-                if num == "A":
-                    if score <= 10: num = "11"
-                    elif score > 10: num = "1"
+                if num == "A": num = "11" if score <= 10 else "1"
                 score += int(num)
             self.score = score
 
@@ -45,9 +43,9 @@ class player:
             if self.score > 21: self.is_bust = True
 
         def check_blackjack(self, sorted_hand):
-            if len(sorted_hand) == 2:
-                if sorted_hand[0] == "10"and "A" in sorted_hand[1]:
-                    self.is_blackjack = True 
+            if len(sorted_hand) == 2: self.is_blackjack = True if sorted_hand[0] == "10"and "A" in sorted_hand[1] else False
+                # if sorted_hand[0] == "10"and "A" in sorted_hand[1]:
+                #     self.is_blackjack = True 
                 
             
     def get_username(self):
@@ -64,9 +62,7 @@ class player:
         while not amount.isdigit():
             amount = input(f"Please input a valid amount\nCurrent bet is {self.pot}.\n")
         amount = int(amount)
-        if self.is_split:
-            if not self.hand[0].is_bust and not self.hand[1].is_bust:
-                amount *= 2
+        # if self.is_split: amount *= 2 if not self.hand[0].is_bust and not self.hand[1].is_bust else 1
 
         self.last_bet += amount
         self.cash -= self.last_bet

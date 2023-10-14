@@ -4,8 +4,8 @@ import util
 
 
 
-def FrontWindow(screen, res:tuple[int,int]) -> str:    
-    '''Landing Page'''
+def index_window(window, res:tuple[int,int], game) -> str:    
+    '''Index page'''
     black = 0, 0, 0
     gray = 170, 170, 170
     smallfont = pg.font.SysFont('Ubuntu', 35)
@@ -30,12 +30,12 @@ def FrontWindow(screen, res:tuple[int,int]) -> str:
                     return 'exit'    
             
             
-        screen.fill(black)
+        window.fill(black)
         mouse_pos = pg.mouse.get_pos()
 
-        blackjack_button = util.create_button(screen, mouse_pos, 'Blackjack', smallfont, button_1_topleft, button_1_dimensions, black, gray, gray, black)
-        exit_button = util.create_button(screen, mouse_pos, 'Exit', smallfont, button_2_topleft, button_2_dimensions, black, gray, gray, black)
+        blackjack_button = util.create_button(window, mouse_pos, 'Blackjack', smallfont, button_1_topleft, button_1_dimensions, black, gray, gray, black)
+        exit_button = util.create_button(window, mouse_pos, 'Exit', smallfont, button_2_topleft, button_2_dimensions, black, gray, gray, black)
 
-        screen.blit(exit_button, button_2_topleft)
-        screen.blit(blackjack_button, button_1_topleft)
+        window.blit(exit_button, button_2_topleft)
+        window.blit(blackjack_button, button_1_topleft)
         pg.display.update()

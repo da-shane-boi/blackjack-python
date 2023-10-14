@@ -148,6 +148,7 @@ class test_player(unittest.TestCase):
         self.assertEqual(player_1.last_bet, 1000)
         self.assertEqual(player_1.cash, 28500)
 
+
     def test_check_balckjack(self):
 
         # Test that blackjack is detected with Jack then Ace
