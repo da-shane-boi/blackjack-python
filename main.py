@@ -3,6 +3,8 @@ from util import deck as dk
 from util import dealer as dlr
 import os
 import random
+from pyfiglet import *
+from termcolor import *
 
 class main():
     def __init__(self) -> None:
@@ -12,6 +14,12 @@ class main():
         self.deck = dk()
         self.play = True
     
+    def show_game_start(self):
+        os.system('clear')
+        print(colored(figlet_format('Blackjack', font='doh', width=500), color='magenta'))
+
+
+
     def get_player_count(self):
         '''Get amount of players and validate that it is a valid integer'''
         player_count = input('How many players are there? ')
@@ -20,6 +28,9 @@ class main():
 
     def print_welcome(self, player_name:str):
         print(f"Welcome, {player_name}!")
+
+    def print_player_details(self, player):
+        print(f"Dealer's Hand\n{self.dealer.hand.current_hand[0]} ##\n{player.username}'s Hand\n{' '.join(player.hand.current_hand)}\nBet: {player.pot}\nCash: {player.cash}")
 
     def players_init(self):
         '''Initialise Players'''
@@ -47,9 +58,9 @@ class main():
         [self.dealer.hand.hit(deck) for i in range(2)]
         self.dealer.show_start()
 
-    def player_turn(self, player):
-        print(f"Dealer's Hand\n{self.dealer.hand.current_hand[0]} ##\n{player.username}'s Hand\n{' '.join(player.hand.current_hand)}\nBet: {player.pot}\nCash: {player.cash}")
-        turn = True
+    def player_turn(self, player:object, turn=True):
+        '''Handles Player Turn'''
+        self.print_player_details(player)
         while turn:
             match input('Hit, Raise, Stand.\n').lower().strip():
                 case 'exit':
@@ -104,6 +115,7 @@ class main():
 
 
     def game(self):
+        self.show_game_start()
         self.players_init()
         while len(self.players) > 0:
             for player in self.players:
