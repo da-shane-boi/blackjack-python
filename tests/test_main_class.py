@@ -15,7 +15,6 @@ class test_main(unittest.TestCase):
             game.players_init()
         output = out.getvalue().strip()
         self.assertEqual(len(game.players), 2)
-        # self.assertEqual('How many players are there?', output[:27])
 
         # Test that player number is valid integer
         with captured_io(StringIO('test\n3\nBetty\nJeremy\nJeff')) as (out, err):
@@ -23,7 +22,6 @@ class test_main(unittest.TestCase):
             game.players_init()
         output = out.getvalue().strip()
         self.assertEqual(len(game.players), 3)
-        # self.assertEqual('How many players are there? Please input valid integer.', output[:55])
 
         # Test that username is added and Welcome message is displayed
         with captured_io(StringIO('1\nJeff')) as (out, err):

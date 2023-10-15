@@ -12,16 +12,25 @@ class main():
         self.deck = dk()
         self.play = True
     
-    def players_init(self):
+    def get_player_count(self):
+        '''Get amount of players and validate that it is a valid integer'''
         player_count = input('How many players are there? ')
-        while not player_count.isdigit():
-            player_count = input('Please input valid integer. ')
+        while not player_count.isdigit(): player_count = input('Please input valid integer. ')
+        return player_count
+
+    def print_welcome(self, player_name:str):
+        print(f"Welcome, {player_name}!")
+
+    def players_init(self):
+        '''Initialise Players'''
+        player_count = self.get_player_count()
         for i in range(int(player_count)):
             self.players.append(ply())
             self.players[i].get_username()
-            print(f"Welcome, {self.players[i].username}!")
+            self.print_welcome(self.players[i].username)
     
     def players_reinit(self):
+        '''Reinitialise players by resetting hands, pot and booleans and resetting dealer'''
         for player in self.players:
             player.hand = ply.hand_class()
             player.pot = 0
@@ -29,6 +38,7 @@ class main():
         self.dealer.hand = ply.hand_class()
         
     def deal(self, deck=None):
+        '''Deal and display player information and dealer starting hand'''
         if deck == None: deck = self.deck.cards
         for player in self.players:
             [player.hand.hit(deck) for i in range(2)]
