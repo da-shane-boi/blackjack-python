@@ -29,7 +29,7 @@ class main():
     def print_welcome(self, player_name:str):
         print(f"Welcome, {player_name}!")
 
-    def print_player_details(self, player):
+    def print_player_details(self, player:ply):
         print(f"Dealer's Hand\n{self.dealer.hand.current_hand[0]} ##\n{player.username}'s Hand\n{' '.join(player.hand.current_hand)}\nBet: {player.pot}\nCash: {player.cash}")
 
     def players_init(self):
@@ -58,7 +58,7 @@ class main():
         [self.dealer.hand.hit(deck) for i in range(2)]
         self.dealer.show_start()
 
-    def player_turn(self, player:object, turn=True):
+    def player_turn(self, player:ply, turn=True):
         '''Handles Player Turn'''
         self.print_player_details(player)
         while turn:
@@ -108,7 +108,7 @@ class main():
                                         if hand_index == 1: turn = False
                                         break
 
-    def player_remove(self, player):
+    def player_remove(self, player:ply):
         print(f"{player.username} has run out of money!!\nPlease Leave.")
         self.players.remove(player)
         input("Plead and Cry nobody cares.\n")
@@ -147,7 +147,7 @@ class main():
 
             self.players_reinit()
 
-    def show_hand(self, player):
+    def show_hand(self, player:ply):
         if not player.is_split:    
             bus = ''
             if player.hand.is_bust:
@@ -162,7 +162,7 @@ class main():
 
             
     
-    def result(self, player):
+    def result(self, player:ply):
         beat_dealer = False
         self.dealer.max_score(self.deck.cards)
         if player.is_split:
@@ -175,7 +175,7 @@ class main():
                 beat_dealer = True
         return beat_dealer
 
-    def handle_result(self, res, player):
+    def handle_result(self, res:bool, player:ply):
         insults = ["has no b*tches.", "has no game.", "might as well just spectate.", "is here to get schooled.", "should've stayed home.", "gets got."]
         self.show_hand(self.dealer)
         self.show_hand(player)
